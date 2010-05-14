@@ -9,25 +9,23 @@ set sm	 " show matches
 set title " xterm title
 set mouse=a " mouse support is nice
 
-
-" perl quote style
+" perl quote hashes
 nmap <silent> "" :let tmp=@/<CR>:s/{\([_a-z0-9]\+\)}/{'\1'}/egi<CR>:let @/=tmp<CR>
 
-" toggles search higlight
+" toggles search higlight with ^T
 nmap <silent><C-t> :set hls!<CR>
 
-" emacs style or not
+" emacs style (or not)
 nmap <C-x><C-x> :update<CR>
 imap <C-x><C-x> <C-o>:update<CR>
 imap <C-a> <Home>
 imap <C-e> <End>
 
-" Cool max resize
+" Max resize
 nmap <silent><C-W>* :resize<CR>:vertical resize<CR>
 nmap <silent><C-W>m :resize<CR>:vertical resize<CR>
 
 " format xml with tidy
-" nmap tx :set nohls<CR>ggVG:s/\n//e<CR>ggVG!tidy -i -xml -q<CR>:set syntax=xml<CR>
 nmap tx :set nohls<CR>:%s/\n//e<CR>:%!tidy -i -xml -q -w 0<CR>:set syntax=xml<CR>
 
 " smart edit
@@ -36,17 +34,6 @@ vmap ' <Esc>`<i'<Esc>`>a'<Esc>l
 vmap ( <Esc>`<i(<Esc>`>a)<Esc>l
 vmap [ <Esc>`<i[<Esc>`>a]<Esc>l
 vmap { <Esc>`<i{<Esc>`>a}<Esc>l
-
-" Eterm pageup/down and tabs
-nmap [5^ gT
-nmap [6^ gt
-imap [5^ <Esc>gT
-imap [6^ <Esc>gt
-
-if &term == "Eterm"
-	set term=xterm-color
-endif
-
 
 let g:_switchCLines = [ "ctermbg=black", "ctermbg=white", "" ]
 let g:_switchCLine=0
