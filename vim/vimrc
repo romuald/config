@@ -1,0 +1,92 @@
+syn on
+set ts=4 " tabstop
+set sw=4 " shiftwidth
+set ai   " autoindent
+set si   " smart indent
+set sm	 " show matches
+"set nu   " show lines number
+
+set title " xterm title
+set mouse=a " mouse support is nice
+
+
+" perl quote style
+nmap <silent> "" :let tmp=@/<CR>:s/{\([_a-z0-9]\+\)}/{'\1'}/egi<CR>:let @/=tmp<CR>
+
+" toggles search higlight
+nmap <silent><C-t> :set hls!<CR>
+
+" emacs style or not
+nmap <C-x><C-x> :update<CR>
+imap <C-x><C-x> <C-o>:update<CR>
+imap <C-a> <Home>
+imap <C-e> <End>
+
+" Cool max resize
+nmap <silent><C-W>* :resize<CR>:vertical resize<CR>
+nmap <silent><C-W>m :resize<CR>:vertical resize<CR>
+
+" format xml with tidy
+" nmap tx :set nohls<CR>ggVG:s/\n//e<CR>ggVG!tidy -i -xml -q<CR>:set syntax=xml<CR>
+nmap tx :set nohls<CR>:%s/\n//e<CR>:%!tidy -i -xml -q -w 0<CR>:set syntax=xml<CR>
+
+" smart edit
+vmap " <Esc>`<i"<Esc>`>a"<Esc>l
+vmap ' <Esc>`<i'<Esc>`>a'<Esc>l
+vmap ( <Esc>`<i(<Esc>`>a)<Esc>l
+vmap [ <Esc>`<i[<Esc>`>a]<Esc>l
+vmap { <Esc>`<i{<Esc>`>a}<Esc>l
+
+" Eterm pageup/down and tabs
+nmap [5^ gT
+nmap [6^ gt
+imap [5^ <Esc>gT
+imap [6^ <Esc>gt
+
+if &term == "Eterm"
+	set term=xterm-color
+endif
+
+
+let g:_switchCLines = [ "ctermbg=black", "ctermbg=white", "" ]
+let g:_switchCLine=0
+function SwitchCLine()
+    hi clear CursorLine
+    
+    let ev = g:_switchCLines[g:_switchCLine]
+    if empty(ev)
+        set nocursorline
+    else
+        execute ":hi CursorLine " . ev
+        set cursorline
+    endif
+
+    if g:_switchCLine + 1 >= len(g:_switchCLines)
+        let g:_switchCLine = 0
+    else
+        let g:_switchCLine = g:_switchCLine + 1
+    endif
+endfunction
+call SwitchCLine()
+nmap <F2> :call SwitchCLine()<cr>
+
+function RenderRST()
+	write
+	let tmpfile = tempname()
+	silent execute "!rst2html \"%\" > " . tmpfile . " && x-www-browser " . tmpfile . " >/dev/null"
+	redraw!
+endfunction
+
+" pour git, plus ou moins
+au CursorHold * checktime
+set autoread
+
+" test
+au WinEnter * set cursorline
+au WinLeave * set nocursorline
+
+
+let g:netrw_list_hide="\.py[co]$,\..*\.swp$"
+let g:netrw_liststyle=3
+" set off on Debian, probably for a good reason
+set modeline
