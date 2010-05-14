@@ -1,0 +1,151 @@
+[ -r ~/.profile ] && source ~/.profile
+
+## AUTOCONF {{{
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':compinstall' filename "$HOME/.zshrc"
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# }}}
+
+## Aliases {{{
+if [ "$PS1" ]; then
+	alias ls='ls -F --color'
+	alias ll='ls -l'
+	alias ..='cd ..'
+	alias py=python
+	alias is='ssh -lroot '
+	#alias vmware="vmplayer /data/vmware/Windows\ 2000/Windows\ 2000.vmx"
+	alias nautilus="nautilus --no-desktop"
+	alias meld="meld 2>/dev/null"
+	alias ack=ack-grep
+	case "$OSTYPE" in
+	darwin*)
+		alias vlc="open -a vlc"
+	;;
+	esac
+fi
+# }}}
+
+## Prompt {{{
+host_style="1;32" # - green
+case "$TERM" in
+xterm*|Eterm)
+	PS1=$'%{\e]0;%m %~%#\007%}%(0?||%B!%b)%{\e['$host_style$'m%}%m%{\e[0m%}:%40<..<%{\e[1;34m%}%~%{\e[0m%}%# '
+	;;
+*)
+	PS1=$'%(0?||%B!%b)%{\e['$host_style$'m%}%m%{\e[0m%}:%40<..<%{\e[1;34m%}%~%{\e[0m%}%# '
+	;;
+esac 
+unset host_style
+# }}}
+
+## Options {{{
+# Correct command line
+setopt correct nohup
+# }}}
+
+# ENV {{{
+#export CFLAGS="-Os -pipe -fomit-frame-pointer"
+#export CPPFLAGS="$CFLAGS"
+export EDITOR=vim
+export JAVA_HOME=/usr/lib/jvm/java-1.5.0-sun-1.5.0.15/jre
+# Color
+export CLICOLOR=1
+
+# Fix $PATH
+#export PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:$PATH"
+
+# Python startup
+[ -f "$HOME/.pythonrc.py" ] && export PYTHONSTARTUP="$HOME/.pythonrc.py"
+
+# Nice mysql prompt
+MYSQL_PS1='\033]0;MySQL \h:\p (\d)\007\e[0;31m\h\e[0m (\p)\n\d> '
+MYSQL_PS1=`echo -e "$MYSQL_PS1"`
+export MYSQL_PS1
+
+# xterm or not
+#[ "$TERM" = "xterm" ] && TERM="xterm-color"
+
+# }}}
+
+## Custom key bindings {{{
+# ^U kills region rather than whole line
+bindkey ^U kill-region
+# ASCII del
+bindkey "^?" backward-delete-char
+
+# Esc-del kills alphanum only
+backward-kill-name() {
+	autoload -U select-word-style;
+	select-word-style bash;
+	zle backward-kill-word;
+	select-word-style normal
+}
+
+zle -N backward-kill-name backward-kill-name
+bindkey "^[^?" backward-kill-name;
+
+# xmodmap -e "keycode  49 = at twosuperior notsign notsign notsign notsign"
+
+#}}}
+
+## SSH completion {{{
+#zstyle ':completion:*' format 'Completing %d'
+#zstyle ':completion:*' group-name ''
+
+zstyle ':completion:*:scp:*' tag-order \
+    'hosts:-host hosts:-domain:domain hosts:-ipaddr:IP\ address *'
+zstyle ':completion:*:scp:*' group-order \
+    users files all-files hosts-domain hosts-host hosts-ipaddr
+zstyle ':completion:*:ssh:*' tag-order \
+    users 'hosts:-host hosts:-domain:domain hosts:-ipaddr:IP\ address *'
+zstyle ':completion:*:ssh:*' group-order \
+    hosts-domain hosts-host users hosts-ipaddr
+
+zstyle ':completion:*:(ssh|scp):*:hosts-host' ignored-patterns \
+    '*.*' loopback localhost
+zstyle ':completion:*:(ssh|scp):*:hosts-domain' ignored-patterns \
+    '<->.<->.<->.<->' '^*.*' '*@*'
+zstyle ':completion:*:(ssh|scp):*:hosts-ipaddr' ignored-patterns \
+    '^<->.<->.<->.<->' '127.0.0.<->'
+zstyle ':completion:*:(ssh|scp):*:users' ignored-patterns "*" #\
+#    adm bin daemon halt lp named shutdown sync
+
+zstyle -e ':completion:*:(*|ssh|scp):*' hosts 'reply=(
+    ${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) \
+            /dev/null)"}%%[# ]*}//,/ }
+    ${=${(f)"$(cat /etc/hosts(|)(N) <<(ypcat hosts 2>/dev/null))"}%%\#*}
+    )'
+#zstyle -e ':completion:*:killall:*' 'reply=/bin/ps exo user,ucomm | sort | uniq | perl -pe "s/.* //"))'
+
+# }}}
+
+function svngrep() {
+	autodir=""
+	if  [ $# = 1 ]; then
+		autodir="."
+	fi
+	grep -r "$@" $autodir | grep -v /\.svn/
+}
+
+fpath=(
+        $fpath
+		        /home/romuald/.zen/zsh/scripts
+				        /home/romuald/.zen/zsh/zle )
+autoload -U zen
+
+# Killall completion
+#functions complete-killall () {
+#	reply=($(/bin/ps exo user,ucomm | sort | uniq | perl -pe "s/.* //"))
+#}
+#compctl -K complete-killall killall
+# vim: sm fdm=marker:
