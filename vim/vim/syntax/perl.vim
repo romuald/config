@@ -11,3 +11,6 @@ set complete=.,w,b,u,t
 vmap tv !perltidy -ce -q <CR>
 nmap tv !perltidy -ce -q <CR>
 
+
+" comment are comment, not C stuff :p
+inoremap # X#

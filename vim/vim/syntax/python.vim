@@ -11,3 +11,7 @@ set enc=utf8
 "set noexpandtab " tabs, no spaces
 
 hi link pythonBuiltin pythonConditional
+
+" comment are comment, not C stuff :p
+inoremap # X#
+
