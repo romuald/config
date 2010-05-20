@@ -6,7 +6,10 @@ defaut:
 
 
 install:
-	@echo TODO
+	cp -a vimrc ~/.vimrc
+	
+	mkdir -p ~/.vim/
+	cp -ra vim/* ~/.vim/
 
 sync:
 	cp ~/.vimrc vimrc
