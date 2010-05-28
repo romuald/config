@@ -1,0 +1,8 @@
+# Pythonss
+*.py[co]
+
+# C
+*.o
+
+# vim
+*.swp

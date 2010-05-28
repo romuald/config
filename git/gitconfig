@@ -1,0 +1,32 @@
+[user]
+	name = Romuald Brunet
+	email = romuald@gandi.net
+
+[alias]
+	st = status
+	co = checkout
+	tk = !gitk --all -d
+
+	svnup = !DIRTY=$(git status --porcelain -uno) && \
+		git stash save svn-up-auto && git svn rebase && \
+		test -n \"$DIRTY\" && git stash pop
+	svncommit = !DIRTY=$(git status --porcelain -uno) && \
+		git stash save svn-ci-auto && git svn dcommit && \
+		test -n \"$DIRTY\" && git stash pop
+
+[core]
+	excludesfile = /home/romuald/.gitignore
+
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+
+[difftool]
+	tool = meld
+	prompt = no
+
+[mergetool]
+	tool = meld
+	prompt = no
