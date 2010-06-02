@@ -18,4 +18,4 @@ augroup filetypedetect
 augroup END
 
 " Closetag for some types only
-au Filetype html,xhtml,xml,xsl,php,rhtml,tt2 source ~/.vim/closetag.vim
+au Filetype html,xhtml,xml,xsl,php,rhtml,tt2 source ~/.vim/ftplugin/html/closetag.vim
