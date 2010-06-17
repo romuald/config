@@ -68,9 +68,23 @@ endfunction
 au CursorHold * checktime
 set autoread
 
-" test
+" Only hilight line in active window
 au WinEnter * set cursorline
 au WinLeave * set nocursorline
+
+
+" auto set paste !
+if &term == "xterm"
+    let &t_ti = &t_ti . "\e[?2004h"
+    let &t_te = "\e[?2004l" . &t_te
+    function XTermPasteBegin(ret)
+        set pastetoggle=<Esc>[201~
+        set paste
+        return a:ret
+    endfunction
+    map <expr> <Esc>[200~ XTermPasteBegin("i")
+    imap <expr> <Esc>[200~ XTermPasteBegin("")
+endif
 
 
 let g:netrw_list_hide="\.py[co]$,\..*\.swp$"
