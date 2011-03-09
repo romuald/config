@@ -17,3 +17,5 @@ inoremap # X#
 
 " ruby-like symbols for python
 vmap tp :s/:\([-a-z0-9_]\+\)/"\1"/ig<CR>
+
+colorscheme smustang
