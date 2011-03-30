@@ -7,6 +7,9 @@
 	co = checkout
 	tk = !gitk --all -d
 
+	pick = cherry-pick --edit
+	softreset = reset --soft HEAD^
+
 	svnup = !DIRTY=$(git status --porcelain -uno) && \
 		git stash save svn-up-auto && git svn rebase && \
 		test -n \"$DIRTY\" && git stash pop
