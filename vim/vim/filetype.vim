@@ -9,6 +9,7 @@ augroup filetypedetect
 	" ollld plugin
 	au! BufRead mozex.textarea.*		setfiletype twiki
 
+	au! BufRead,BufNewFile *.json		setfiletype javascript
 	au! BufRead,BufNewFile *.todo		setfiletype todo
 	au! BufRead,BufNewFile *.rhtml		setfiletype eruby
 	au! BufRead,BufNewFile *.tt			setfiletype tt2
