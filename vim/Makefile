@@ -10,9 +10,9 @@ install:
 	cp -a gvimrc ~/gvimrc
 	
 	mkdir -p ~/.vim/
-	cp -ra vim/* ~/.vim/
+	cp -a vim/* ~/.vim/
 
 sync:
 	cp ~/.vimrc vimrc
 	cp ~/.gvimrc gvimrc
-	cp -ra ~/.vim/* vim/
+	cp -a ~/.vim/* vim/
