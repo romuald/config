@@ -97,9 +97,8 @@ let Tlist_Enable_Fold_Column = 0
 let Tlist_Process_File_Always = 1
 
 " statusline with tags
+set laststatus=2
 set statusline=%<%f\ %h%m%r%=%([%{Tlist_Get_Tagname_By_Line()}]%)%14.(%l,%c%V%)
-
-
 
 let g:netrw_list_hide="\.py[co]$,\..*\.swp$"
 let g:netrw_liststyle=3
