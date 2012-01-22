@@ -7,10 +7,12 @@ defaut:
 
 install:
 	cp -a vimrc ~/.vimrc
+	cp -a gvimrc ~/gvimrc
 	
 	mkdir -p ~/.vim/
 	cp -ra vim/* ~/.vim/
 
 sync:
 	cp ~/.vimrc vimrc
+	cp ~/.gvimrc gvimrc
 	cp -ra ~/.vim/* vim/
