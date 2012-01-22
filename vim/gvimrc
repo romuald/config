@@ -1,5 +1,5 @@
 colorscheme smustang
-autocmd GUIEnter * set guifont=Monospace\ 9
+autocmd GUIEnter * silent! set guifont=Monospace\ 9
 autocmd GUIEnter * set toolbar=
 set mousefocus
 "autocmd GUIEnter * set linespace=-2
