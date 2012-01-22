@@ -72,6 +72,9 @@ set autoread
 au WinEnter * set cursorline
 au WinLeave * set nocursorline
 
+" better tab completion
+set wildmode=longest,list,full
+set wildmenu
 
 " auto set paste !
 if &term == "xterm"
