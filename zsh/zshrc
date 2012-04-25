@@ -51,6 +51,8 @@ unset host_style
 ## Options {{{
 # Correct command line
 setopt correct nohup
+#setopt prompt_subst
+
 # }}}
 
 # ENV {{{
@@ -141,7 +143,7 @@ fpath=(
         $fpath
 		        /home/romuald/.zen/zsh/scripts
 				        /home/romuald/.zen/zsh/zle )
-autoload -U zen
+alias ng=noglob
 
 # Killall completion
 #functions complete-killall () {
