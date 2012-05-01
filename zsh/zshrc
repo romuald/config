@@ -5,6 +5,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+HIST_EXPIRE_DUPS_FIRST=1
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -29,11 +30,19 @@ if [ "$PS1" ]; then
 	alias ack=ack-grep
 	case "$OSTYPE" in
 	darwin*)
-		alias vlc="open -a vlc"
+		alias ls='gls -F'
+		alias macvim="open -a MacVim"
+	;;
+	linux*)
+		alias ls='ls -F --color=auto'
 	;;
 	esac
 fi
 # }}}
+
+# Berk locale
+unset LC_COLLATE LC_CTYPE LC_MESSAGES LC_MONETARY LC_NUMERIC LC_TIME 
+export LC_CTYPE=en_US.UTF-8
 
 ## Prompt {{{
 host_style="1;32" # - green
