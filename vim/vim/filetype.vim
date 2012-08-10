@@ -20,3 +20,5 @@ augroup END
 
 " Closetag for some types only
 au Filetype html,xhtml,xml,xsl,php,rhtml,tt2 source ~/.vim/ftplugin/html/closetag.vim
+au Filetype html,xhtml,xml,xsl,php,rhtml,tt2 set et
+au Filetype html,xhtml,xml,xsl,php,rhtml,tt2 colorscheme lucius
