@@ -3,6 +3,7 @@ set ts=4 " tabstop
 set sw=4 " shiftwidth
 set ai   " autoindent
 set si   " smart indent
+set sta  " smart tabs
 set sm	 " show matches
 "set nu   " show lines number
 
