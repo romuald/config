@@ -119,3 +119,4 @@ let g:netrw_list_hide="\.py[co]$,\..*\.swp$"
 let g:netrw_liststyle=3
 " set off on Debian, probably for a good reason
 set modeline
+set modelines=1
