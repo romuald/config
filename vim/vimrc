@@ -10,6 +10,9 @@ set sm	 " show matches
 set title " xterm title
 set mouse=a " mouse support is nice
 
+" auto-activate ftplugin scripts
+filetype plugin on
+
 " perl quote hashes
 nmap <silent> "" :let tmp=@/<CR>:s/{\([_a-z0-9]\+\)}/{'\1'}/egi<CR>:let @/=tmp<CR>
 
