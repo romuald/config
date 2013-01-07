@@ -42,12 +42,11 @@ vmap ( <Esc>`<i(<Esc>`>a)<Esc>l
 vmap [ <Esc>`<i[<Esc>`>a]<Esc>l
 vmap { <Esc>`<i{<Esc>`>a}<Esc>l
 
-" smartindent avec les #
-inoremap # X#
-
-if &term == "screen"
-	set term=xterm-color
-endif
+" insert + shift + left/right => select
+imap <S-C-Left> <C-o>v<C-Left>
+imap <S-Left> <C-o>v<Left>
+imap <S-C-Right> <C-o>v<C-Right>
+imap <S-Right> <C-o>v<Right>
 
 let g:_switchCLines = [ "ctermbg=black", "ctermbg=white", "" ]
 let g:_switchCLine=0

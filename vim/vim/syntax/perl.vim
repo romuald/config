@@ -11,7 +11,7 @@ set complete=.,w,b,u,t
 vmap tv !perltidy -ce -q <CR>
 nmap tv !perltidy -ce -q <CR>
 
-syn match Error display excludenl "^\s\+$"
-syn match Error display excludenl "\S\s\+$"ms=s+1
+" comment are comment, not C stuff :p
+inoremap # X#
 
 colorscheme smustang
