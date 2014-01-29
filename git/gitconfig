@@ -26,6 +26,9 @@
 	interactive = auto
 	status = auto
 
+[merge]
+	ff = only
+
 [log]
 	decorate = on
 
