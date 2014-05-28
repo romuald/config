@@ -43,7 +43,7 @@ fi
 # }}}
 
 # Berk locale
-unset LC_COLLATE LC_CTYPE LC_MESSAGES LC_MONETARY LC_NUMERIC LC_TIME 
+unset LC_COLLATE LC_CTYPE LC_MESSAGES LC_MONETARY LC_NUMERIC LC_TIME
 export LC_CTYPE=en_US.UTF-8
 
 ## Prompt {{{
@@ -55,8 +55,10 @@ xterm*|Eterm)
 *)
 	PS1=$'%(0?||%B!%b)%{\e['$host_style$'m%}%m%{\e[0m%}:%40<..<%{\e[1;34m%}%~%{\e[0m%}%# '
 	;;
-esac 
+esac
 unset host_style
+
+
 # }}}
 
 ## Options {{{
@@ -93,6 +95,7 @@ export MYSQL_PS1
 ## Custom key bindings {{{
 # ^U kills region rather than whole line
 bindkey ^U kill-region
+
 # ASCII del
 bindkey "^?" backward-delete-char
 
