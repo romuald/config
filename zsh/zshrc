@@ -27,7 +27,7 @@ if [ "$PS1" ]; then
 	#alias vmware="vmplayer /data/vmware/Windows\ 2000/Windows\ 2000.vmx"
 	alias nautilus="nautilus --no-desktop"
 	alias meld="meld 2>/dev/null"
-	alias ack=ack-grep
+
 	case "$OSTYPE" in
 	darwin*)
 		alias ls='gls -F'
@@ -37,6 +37,8 @@ if [ "$PS1" ]; then
 		alias ls='ls -F --color=auto'
 	;;
 	esac
+
+	[ -n "$commands[ack-grep]" ] && alias ack=ack-grep
 fi
 # }}}
 
