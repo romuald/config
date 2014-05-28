@@ -10,8 +10,11 @@ require("naughty")
 -- Load Debian menu entries
 require("debian.menu")
 
+require("awful.remote")
+
 -- {{{ Variable definitions -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/romuald/.config/awesome/theme.lua")
+
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -56,11 +59,17 @@ tags = {
 				layouts[1], layouts[1], layouts[1], layouts[1] 
 }}
 
+function reset_focus()
+  client.focus = mouse.object_under_pointer()
+end
 
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
     -- tags[s] = awful.tag({ 1, 2, "talk", 4, "mail", 6, 7, 8, 9 }, s, layouts[1])
 	  tags[s] = awful.tag(tags.names, s, tags.layout)
+end
+for s=1, screen.count() do
+-- screen[s]:add_signal("arrange", reset_focus)
 end
 -- }}}
 
@@ -324,6 +333,8 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons },
 	  },
+    { rule = { class = "Lastfm-scrobbler" },
+      properties = { floating = true } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { name = "htop" },
@@ -347,6 +358,11 @@ awful.rules.rules = {
 client.add_signal("manage", function (c, startup)
     -- Add a titlebar
     -- awful.titlebar.add(c, { modkey = modkey })
+	
+	if c.name:find("rdesktop") then
+		c.floating = true
+		awful.titlebar.add(c, { modkey = modkey })
+	end
 
     -- Enable sloppy focus
     c:add_signal("mouse::enter", function(c)
@@ -371,4 +387,10 @@ end)
 
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+
+
+for s=1, screen.count() do
+end
+
 -- }}}

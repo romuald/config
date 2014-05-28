@@ -31,7 +31,7 @@ theme.titlebar_maximized_button_focus_inactive  = "/usr/share/awesome/themes/zen
 theme.titlebar_maximized_button_normal_inactive = "/usr/share/awesome/themes/zenburn/titlebar/maximized_normal_inactive.png"
 -- }}}
 
-
+theme.wallpaper_cmd = {}
 
 return theme
 
