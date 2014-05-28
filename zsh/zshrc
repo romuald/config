@@ -47,10 +47,14 @@ unset LC_COLLATE LC_CTYPE LC_MESSAGES LC_MONETARY LC_NUMERIC LC_TIME
 export LC_CTYPE=en_US.UTF-8
 
 ## Prompt {{{
-host_style="1;32" # - green
+host_style='%B%F{green}' # - green
 case "$TERM" in
 xterm*|Eterm)
-	PS1=$'%{\e]0;%m %~%#\007%}%(0?||%B!%b)%{\e['$host_style$'m%}%m%{\e[0m%}:%40<..<%{\e[1;34m%}%~%{\e[0m%}%# '
+	PS1=$'%{\e]0;%m %~%#\007%}' # title
+	PS1=$PS1'%(1j.%B⌛.)' # jobs (or not)
+	PS1=$PS1$host_style$'%m%f' # hostname
+	PS1=$PS1'%b:%40<..<%B%F{blue}%~%b%f' # path
+	PS1=$PS1'%(?..%K{red})%#%b%f%k ' # (colored) user
 	;;
 *)
 	PS1=$'%(0?||%B!%b)%{\e['$host_style$'m%}%m%{\e[0m%}:%40<..<%{\e[1;34m%}%~%{\e[0m%}%# '
