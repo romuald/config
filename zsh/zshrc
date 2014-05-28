@@ -30,7 +30,7 @@ if [ "$PS1" ]; then
 
 	case "$OSTYPE" in
 	darwin*)
-		alias ls='gls -F'
+		alias ls='gls -F --color=auto'
 		alias macvim="open -a MacVim"
 	;;
 	linux*)
