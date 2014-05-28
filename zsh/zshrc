@@ -129,6 +129,11 @@ backward-kill-name() {
 zle -N backward-kill-name backward-kill-name
 bindkey "^[^?" backward-kill-name;
 
+# Control left/right
+bindkey ';5D' emacs-backward-word
+bindkey ';5D' emacs-backward-word
+
+
 # xmodmap -e "keycode  49 = at twosuperior notsign notsign notsign notsign"
 
 #}}}
