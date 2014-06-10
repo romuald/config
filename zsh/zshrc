@@ -131,7 +131,7 @@ bindkey "^[^?" backward-kill-name;
 
 # Control left/right
 bindkey ';5D' emacs-backward-word
-bindkey ';5D' emacs-backward-word
+bindkey ';5C' emacs-forward-word
 
 
 # xmodmap -e "keycode  49 = at twosuperior notsign notsign notsign notsign"
